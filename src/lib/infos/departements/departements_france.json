@@ -1,0 +1,406 @@
+[
+  {
+    "departements": "Ain",
+    "code": "01"
+  },
+  {
+    "departements": "Aisne",
+    "code": "02"
+  },
+  {
+    "departements": "Allier",
+    "code": "03"
+  },
+  {
+    "departements": "Alpes-de-Haute-Provence",
+    "code": "04"
+  },
+  {
+    "departements": "Hautes-Alpes",
+    "code": "05"
+  },
+  {
+    "departements": "Alpes-Maritimes",
+    "code": "06"
+  },
+  {
+    "departements": "Ardèche",
+    "code": "07"
+  },
+  {
+    "departements": "Ardennes",
+    "code": "08"
+  },
+  {
+    "departements": "Ariège",
+    "code": "09"
+  },
+  {
+    "departements": "Aube",
+    "code": "10"
+  },
+  {
+    "departements": "Aude",
+    "code": "11"
+  },
+  {
+    "departements": "Aveyron",
+    "code": "12"
+  },
+  {
+    "departements": "Bouches-du-Rhône",
+    "code": "13"
+  },
+  {
+    "departements": "Calvados",
+    "code": "14"
+  },
+  {
+    "departements": "Cantal",
+    "code": "15"
+  },
+  {
+    "departements": "Charente",
+    "code": "16"
+  },
+  {
+    "departements": "Charente-Maritime",
+    "code": "17"
+  },
+  {
+    "departements": "Cher",
+    "code": "18"
+  },
+  {
+    "departements": "Corrèze",
+    "code": "19"
+  },
+  {
+    "departements": "Corse-du-Sud",
+    "code": "2A"
+  },
+  {
+    "departements": "Haute-Corse",
+    "code": "2B"
+  },
+  {
+    "departements": "Côte-d'Or",
+    "code": "21"
+  },
+  {
+    "departements": "Côtes-d'Armor",
+    "code": "22"
+  },
+  {
+    "departements": "Creuse",
+    "code": "23"
+  },
+  {
+    "departements": "Dordogne",
+    "code": "24"
+  },
+  {
+    "departements": "Doubs",
+    "code": "25"
+  },
+  {
+    "departements": "Drôme",
+    "code": "26"
+  },
+  {
+    "departements": "Eure",
+    "code": "27"
+  },
+  {
+    "departements": "Eure-et-Loir",
+    "code": "28"
+  },
+  {
+    "departements": "Finistère",
+    "code": "29"
+  },
+  {
+    "departements": "Gard",
+    "code": "30"
+  },
+  {
+    "departements": "Haute-Garonne",
+    "code": "31"
+  },
+  {
+    "departements": "Gers",
+    "code": "32"
+  },
+  {
+    "departements": "Gironde",
+    "code": "33"
+  },
+  {
+    "departements": "Hérault",
+    "code": "34"
+  },
+  {
+    "departements": "Ille-et-Vilaine",
+    "code": "35"
+  },
+  {
+    "departements": "Indre",
+    "code": "36"
+  },
+  {
+    "departements": "Indre-et-Loire",
+    "code": "37"
+  },
+  {
+    "departements": "Isère",
+    "code": "38"
+  },
+  {
+    "departements": "Jura",
+    "code": "39"
+  },
+  {
+    "departements": "Landes",
+    "code": "40"
+  },
+  {
+    "departements": "Loir-et-Cher",
+    "code": "41"
+  },
+  {
+    "departements": "Loire",
+    "code": "42"
+  },
+  {
+    "departements": "Haute-Loire",
+    "code": "43"
+  },
+  {
+    "departements": "Loire-Atlantique",
+    "code": "44"
+  },
+  {
+    "departements": "Loiret",
+    "code": "45"
+  },
+  {
+    "departements": "Lot",
+    "code": "46"
+  },
+  {
+    "departements": "Lot-et-Garonne",
+    "code": "47"
+  },
+  {
+    "departements": "Lozère",
+    "code": "48"
+  },
+  {
+    "departements": "Maine-et-Loire",
+    "code": "49"
+  },
+  {
+    "departements": "Manche",
+    "code": "50"
+  },
+  {
+    "departements": "Marne",
+    "code": "51"
+  },
+  {
+    "departements": "Haute-Marne",
+    "code": "52"
+  },
+  {
+    "departements": "Mayenne",
+    "code": "53"
+  },
+  {
+    "departements": "Meurthe-et-Moselle",
+    "code": "54"
+  },
+  {
+    "departements": "Meuse",
+    "code": "55"
+  },
+  {
+    "departements": "Morbihan",
+    "code": "56"
+  },
+  {
+    "departements": "Moselle",
+    "code": "57"
+  },
+  {
+    "departements": "Nièvre",
+    "code": "58"
+  },
+  {
+    "departements": "Nord",
+    "code": "59"
+  },
+  {
+    "departements": "Oise",
+    "code": "60"
+  },
+  {
+    "departements": "Orne",
+    "code": "61"
+  },
+  {
+    "departements": "Pas-de-Calais",
+    "code": "62"
+  },
+  {
+    "departements": "Puy-de-Dôme",
+    "code": "63"
+  },
+  {
+    "departements": "Pyrénées-Atlantiques",
+    "code": "64"
+  },
+  {
+    "departements": "Hautes-Pyrénées",
+    "code": "65"
+  },
+  {
+    "departements": "Pyrénées-Orientales",
+    "code": "66"
+  },
+  {
+    "departements": "Bas-Rhin",
+    "code": "67"
+  },
+  {
+    "departements": "Haut-Rhin",
+    "code": "68"
+  },
+  {
+    "departements": "Rhône",
+    "code": "69"
+  },
+  {
+    "departements": "Haute-Saône",
+    "code": "70"
+  },
+  {
+    "departements": "Saône-et-Loire",
+    "code": "71"
+  },
+  {
+    "departements": "Sarthe",
+    "code": "72"
+  },
+  {
+    "departements": "Savoie",
+    "code": "73"
+  },
+  {
+    "departements": "Haute-Savoie",
+    "code": "74"
+  },
+  {
+    "departements": "Paris",
+    "code": "75"
+  },
+  {
+    "departements": "Seine-Maritime",
+    "code": "76"
+  },
+  {
+    "departements": "Seine-et-Marne",
+    "code": "77"
+  },
+  {
+    "departements": "Yvelines",
+    "code": "78"
+  },
+  {
+    "departements": "Deux-Sèvres",
+    "code": "79"
+  },
+  {
+    "departements": "Somme",
+    "code": "80"
+  },
+  {
+    "departements": "Tarn",
+    "code": "81"
+  },
+  {
+    "departements": "Tarn-et-Garonne",
+    "code": "82"
+  },
+  {
+    "departements": "Var",
+    "code": "83"
+  },
+  {
+    "departements": "Vaucluse",
+    "code": "84"
+  },
+  {
+    "departements": "Vendée",
+    "code": "85"
+  },
+  {
+    "departements": "Vienne",
+    "code": "86"
+  },
+  {
+    "departements": "Haute-Vienne",
+    "code": "87"
+  },
+  {
+    "departements": "Vosges",
+    "code": "88"
+  },
+  {
+    "departements": "Yonne",
+    "code": "89"
+  },
+  {
+    "departements": "Territoire de Belfort",
+    "code": "90"
+  },
+  {
+    "departements": "Essonne",
+    "code": "91"
+  },
+  {
+    "departements": "Hauts-de-Seine",
+    "code": "92"
+  },
+  {
+    "departements": "Seine-Saint-Denis",
+    "code": "93"
+  },
+  {
+    "departements": "Val-de-Marne",
+    "code": "94"
+  },
+  {
+    "departements": "Val-d'Oise",
+    "code": "95"
+  },
+  {
+    "departements": "Guadeloupe",
+    "code": "971"
+  },
+  {
+    "departements": "Martinique",
+    "code": "972"
+  },
+  {
+    "departements": "Guyane",
+    "code": "973"
+  },
+  {
+    "departements": "La Réunion",
+    "code": "974"
+  },
+  {
+    "departements": "Mayotte",
+    "code": "976"
+  }
+]
