@@ -13,14 +13,17 @@
 	let naf = $derived(NAF.filter((line) => line.categorie == selectedCategorie));
 	let selectedNaf = $state('');
 	let selectedDept = $state('');
-    let selectedTypeEnt = $state('');
-    $inspect(selectedTypeEnt)
+	let selectedTypeEnt = $state('');
+
+	let page = $state(1);
 </script>
 
 <div class={actif == 1 ? 'wrapp show' : 'wrapp'}>
 	<h2>Recherche d'entreprise par code NAF unitaire</h2>
 	<p></p>
-	<button type="button" onclick={() => (entreprises = api.callApi(selectedNaf, selectedDept))}
+	<button
+		type="button"
+		onclick={() => (entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, 1, 20))}
 		>Appel</button
 	>
 	<div class="container">
@@ -62,7 +65,12 @@
 			</div>
 		</div>
 		<div class="col">
-			<h3>Vos resultats :</h3>
+			<h3>
+				Vos resultats :
+				{#if entreprises}
+					<button type="button" onclick={() => (entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, page+1, 20))}>></button>
+				{/if}
+			</h3>
 			{#if entreprises}
 				{#await entreprises}
 					<p>Chargement...</p>
@@ -79,7 +87,7 @@
 								{/if}
 								<p>{entreprise.nom_complet}</p>
 							</div>
-							{#if entreprise.dirigeants}
+							{#if entreprise.dirigeants.length > 0}
 								<details>
 									<summary>Dirigeants</summary>
 									{#each entreprise.dirigeants as dirigeant}
