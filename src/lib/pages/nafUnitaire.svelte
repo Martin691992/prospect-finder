@@ -16,6 +16,7 @@
 	let selectedTypeEnt = $state('');
 
 	let page = $state(1);
+
 </script>
 
 <div class={actif == 1 ? 'wrapp show' : 'wrapp'}>
@@ -68,15 +69,20 @@
 			<h3>
 				Vos resultats :
 				{#if entreprises}
-					<button type="button" onclick={() => (entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, page+1, 20))}>></button>
+					<button
+						type="button"
+						onclick={() =>
+							(entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, ++page, 20))}
+						>></button
+					>
 				{/if}
 			</h3>
 			{#if entreprises}
 				{#await entreprises}
 					<p>Chargement...</p>
 				{:then entreprises}
-					{#if entreprises.erreur}
-						<p>Erreur : {entreprises.erreur}</p>
+					{#if entreprises?.erreur}
+						<p>Erreur : {entreprises?.erreur}</p>
 					{:else}
 						{#each entreprises as entreprise}
 							<div class="line">
