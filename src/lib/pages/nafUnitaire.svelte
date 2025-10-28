@@ -16,7 +16,6 @@
 	let selectedTypeEnt = $state('');
 
 	let page = $state(1);
-
 </script>
 
 <div class={actif == 1 ? 'wrapp show' : 'wrapp'}>
@@ -72,9 +71,17 @@
 					<button
 						type="button"
 						onclick={() =>
-							(entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, ++page, 20))}
-						>></button
+							(entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, --page, 20))}
 					>
+						{'<'}
+					</button>
+					<button
+						type="button"
+						onclick={() =>
+							(entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, ++page, 20))}
+						>{'>'}</button
+					>
+					<p>Page : {page} / {entreprises.total_pages}</p>
 				{/if}
 			</h3>
 			{#if entreprises}
@@ -84,7 +91,7 @@
 					{#if entreprises?.erreur}
 						<p>Erreur : {entreprises?.erreur}</p>
 					{:else}
-						{#each entreprises as entreprise}
+						{#each entreprises.data.results as entreprise}
 							<div class="line">
 								{#if entreprise.etat_administratif == 'A'}
 									<p class="actif">Actif</p>
@@ -143,7 +150,9 @@
 					display: flex;
 					gap: 5px;
 					p.actif {
-						color: green;
+						color: white;
+						padding: 0.5em;
+						background-color: green;
 					}
 				}
 			}

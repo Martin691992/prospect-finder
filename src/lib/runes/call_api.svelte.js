@@ -7,15 +7,17 @@ export function callInseeAPI(){
 				'content-type': 'application/json'
 			},
 			body: JSON.stringify({
-				code_naf: code_naf,
-				departements: departements,
-				typeEnt: typeEnt,
-				page: page,
-				nbParPages: nbParPages
+				code_naf: code_naf ?? "",
+				departements: departements ?? "",
+				typeEnt: typeEnt ?? "",
+				page: page ?? "",
+				nbParPages: nbParPages ?? ""
 			})
 		});
 		const data = await response.json();
-		return data
+		return {
+			data
+		}
 	}
     return {
         callApi

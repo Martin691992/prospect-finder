@@ -1,39 +1,91 @@
 <script>
+	import { departements } from '$lib/infos';
 	import { callInseeAPI } from '$lib/runes/call_api.svelte';
+	import MultipleSelect from '$lib/components/multipleSelect.svelte';
 	let { actif = $bindable() } = $props();
 
 	const api = callInseeAPI();
 	let entreprises = $state();
-    let naf = $state('')
+	let naf = $state('');
+	let selectedDept = $state('');
+	let selectedTypeEnt = $state('');
+    let page = $state(1)
 </script>
 
 <div class={actif == 3 ? 'wrapp show' : 'wrapp'}>
-    <h2>Recherche d'entreprise par code NAF </h2>
-    <button type="button" onclick={() => (entreprises = api.callApi(naf))}>Appel</button>
-    <div class="container">
-        <div class="col">
-            <h3>Selectionnez un secteur d'activité avec un code NAF</h3>
-            <label for="naf">Code NAF</label>
-            <input bind:value={naf} type="text" name="" id="">
-        </div>
-        <div class="col">
-			<h3>Vos resultats : </h3>
-            {#if entreprises}
+	<h2>Recherche d'entreprise par code NAF</h2>
+	<button type="button" onclick={() => (entreprises = api.callApi(naf, selectedDept, selectedTypeEnt, page, 20))}
+		>Appel</button
+	>
+	<div class="container">
+		<div class="col">
+			<h3>Selectionnez un secteur d'activité avec un code NAF</h3>
+			<label for="naf">Code NAF</label>
+			<input bind:value={naf} type="text" name="" id="" />
+			<MultipleSelect list={departements} bind:selectList={selectedDept} />
+			<p>Type entreprise :</p>
+			<div>
+				<label for="PME">PME</label>
+				<input bind:group={selectedTypeEnt} value="PME" type="checkbox" name="PME" id="PME" />
+				<label for="ETI">ETI</label>
+				<input bind:group={selectedTypeEnt} type="checkbox" value="ETI" name="ETI" id="ETI" />
+				<label for="GE">GE</label>
+				<input bind:group={selectedTypeEnt} type="checkbox" value="GE" name="GE" id="GE" />
+			</div>
+		</div>
+		<div class="col">
+			<h3>
+				Vos resultats :
+				{#if entreprises}
+					<button
+						type="button"
+						onclick={() =>
+							(entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, --page, 20))}
+					>
+						{'<'}
+					</button>
+					<button
+						type="button"
+						onclick={() =>
+							(entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, ++page, 20))}
+						>{'>'}</button
+					>
+					<p>Page : {page} / {entreprises.total_pages}</p>
+				{/if}
+			</h3>
+
+			{#if entreprises}
 				{#await entreprises}
 					<p>Chargement...</p>
 				{:then entreprises}
 					{#if entreprises.erreur}
 						<p>Erreur : {entreprises.erreur}</p>
 					{:else}
-						{#each entreprises as entreprise}
-							<p>{entreprise.nom_complet}</p>
+						{#each entreprises.data.results as entreprise}
+							<div class="line">
+								{#if entreprise.etat_administratif == 'A'}
+									<p class="actif">Actif</p>
+								{:else}
+									<p class="inactif">Inactif</p>
+								{/if}
+								<p>{entreprise.nom_complet}</p>
+							</div>
+							{#if entreprise.dirigeants.length > 0}
+								<details>
+									<summary>Dirigeants</summary>
+									{#each entreprise.dirigeants as dirigeant}
+										<p>{dirigeant.nom} - {dirigeant.prenoms} - {dirigeant.qualite}</p>
+									{/each}
+								</details>
+							{/if}
 						{/each}
 					{/if}
 				{/await}
 			{/if}
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
+
 <style>
 	.wrapp {
 		grid-area: stack;
@@ -41,30 +93,38 @@
 		&.show {
 			visibility: visible;
 		}
-        .container {
+		.container {
 			display: grid;
-			grid-template-columns: 30vw 1fr;
-            column-gap: 2em;
-            margin-top: 2em;
+			grid-template-columns: 0.3fr 1fr;
+			column-gap: 2em;
+			margin-top: 2em;
 			.col {
 				display: flex;
 				flex-direction: column;
-                padding: 1em;
-                border: solid 1px rgba(0, 0, 0, 0.2);
-                label{
-                    margin: 1em 0 0.5em 0;
-                    cursor: pointer;
-                }
-                select{
-                    padding: 0.3em .5em;
-                    cursor: pointer;
-                }
-                input{
-                    cursor: pointer;
-                }
-                .input{
-
-                }
+				padding: 1em;
+				border: solid 1px rgba(0, 0, 0, 0.2);
+				label {
+					margin: 1em 0 0.5em 0;
+					cursor: pointer;
+				}
+				/* select {
+					padding: 0.3em 0.5em;
+					cursor: pointer;
+				}
+				input {
+					cursor: pointer;
+				}
+				.input {
+				} */
+				.line {
+					display: flex;
+					gap: 5px;
+					p.actif {
+						color: white;
+						padding: 0.5em;
+						background-color: green;
+					}
+				}
 			}
 		}
 	}

@@ -6,5 +6,5 @@ export const POST = async ({ request }) => {
         return { erreur: "Mauvaise requete" }
     }
     const data = await response.json()
-    return json(data.results)
+    return json(data)
 }

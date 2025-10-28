@@ -144,9 +144,12 @@
 				}
 				.line {
 					display: flex;
+					align-items: center;
 					gap: 5px;
 					p.actif {
-						color: green;
+						color: white;
+						padding: .5em;
+						background-color: green;
 					}
 				}
 			}
