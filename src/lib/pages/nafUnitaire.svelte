@@ -16,6 +16,8 @@
 	let selectedTypeEnt = $state('');
 
 	let page = $state(1);
+	let maxPage = $derived(entreprises?.data?.total_pages)
+
 </script>
 
 <div class={actif == 1 ? 'wrapp show' : 'wrapp'}>
@@ -68,50 +70,61 @@
 			<h3>
 				Vos resultats :
 				{#if entreprises}
-					<button
+
+					{#await entreprises}
+						...
+					{:then entreprise}
+										<button
 						type="button"
-						onclick={() =>
-							(entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, --page, 20))}
+						onclick={async () =>
+							(entreprises = await api.callApi(selectedNaf, selectedDept, selectedTypeEnt, page == 1 ? page=1 : --page, 20))}
 					>
 						{'<'}
 					</button>
 					<button
 						type="button"
-						onclick={() =>
-							(entreprises = api.callApi(selectedNaf, selectedDept, selectedTypeEnt, ++page, 20))}
+						onclick={async() =>
+							(entreprises = await api.callApi(selectedNaf, selectedDept, selectedTypeEnt, page == maxPage ? page = maxPage : ++page, 20))}
 						>{'>'}</button
 					>
-					<p>Page : {page} / {entreprises.total_pages}</p>
+						<p>Page : {page} / {entreprise.data.total_pages}</p>
+					{/await}
+					
 				{/if}
 			</h3>
-			{#if entreprises}
-				{#await entreprises}
-					<p>Chargement...</p>
-				{:then entreprises}
-					{#if entreprises?.erreur}
-						<p>Erreur : {entreprises?.erreur}</p>
-					{:else}
-						{#each entreprises.data.results as entreprise}
-							<div class="line">
-								{#if entreprise.etat_administratif == 'A'}
-									<p class="actif">Actif</p>
-								{:else}
-									<p class="inactif">Inactif</p>
-								{/if}
-								<p>{entreprise.nom_complet}</p>
-							</div>
-							{#if entreprise.dirigeants.length > 0}
-								<details>
-									<summary>Dirigeants</summary>
-									{#each entreprise.dirigeants as dirigeant}
-										<p>{dirigeant.nom} - {dirigeant.prenoms} - {dirigeant.qualite}</p>
-									{/each}
-								</details>
-							{/if}
-						{/each}
-					{/if}
-				{/await}
-			{/if}
+			<div class="data">
+				{#if entreprises}
+					{#await entreprises}
+						<p>Chargement...</p>
+					{:then entreprises}
+						{#if entreprises.erreur}
+							<p>Erreur : {entreprises.erreur}</p>
+						{:else}
+							{#each entreprises.data.results as entreprise}
+								<div class="line">
+									<div class="resume">
+										{#if entreprise.etat_administratif == 'A'}
+											<p class="actif">Actif</p>
+										{:else}
+											<p class="inactif">Inactif</p>
+										{/if}
+										<p>{entreprise.nom_complet}</p>
+										<p>Département siège : {entreprise.siege.departement}</p>
+									</div>
+									{#if entreprise.dirigeants.length > 0}
+										<details>
+											<summary>Dirigeants</summary>
+											{#each entreprise.dirigeants as dirigeant}
+												<p>{dirigeant.nom} - {dirigeant.prenoms} - {dirigeant.qualite}</p>
+											{/each}
+										</details>
+									{/if}
+								</div>
+							{/each}
+						{/if}
+					{/await}
+				{/if}
+			</div>
 		</div>
 	</div>
 </div>
@@ -125,7 +138,7 @@
 		}
 		.container {
 			display: grid;
-			grid-template-columns: 0.3fr 1fr;
+			grid-template-columns: 0.5fr 1fr;
 			column-gap: 2em;
 			margin-top: 2em;
 			.col {
@@ -133,11 +146,13 @@
 				flex-direction: column;
 				padding: 1em;
 				border: solid 1px rgba(0, 0, 0, 0.2);
+				overflow-y: scroll;
+				height: 65vh;
 				label {
 					margin: 1em 0 0.5em 0;
 					cursor: pointer;
 				}
-				select {
+				/* select {
 					padding: 0.3em 0.5em;
 					cursor: pointer;
 				}
@@ -145,14 +160,36 @@
 					cursor: pointer;
 				}
 				.input {
-				}
-				.line {
-					display: flex;
-					gap: 5px;
-					p.actif {
-						color: white;
+				} */
+				.data {
+					display: grid;
+					grid-template-columns: 1fr;
+					row-gap: 1em;
+					.line {
+						border-radius: 8px;
+						box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+						border: solid 1px rgba(0, 0, 0, 0.2);
 						padding: 0.5em;
-						background-color: green;
+						.resume{
+							display: flex;
+							align-items: center;
+							gap: 1em;
+							p.actif {
+								color: white;
+								padding: 0.5em;
+								background-color: green;
+								border-radius: 8px;
+
+							}
+						}
+
+					}
+					details{
+						padding: 0.5em;
+						summary{
+							cursor: pointer;
+
+						}
 					}
 				}
 			}
