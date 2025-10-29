@@ -46,15 +46,15 @@
 					{:then entreprise}
 										<button
 						type="button"
-						onclick={async () =>
-							(entreprises = await api.callApi(naf, selectedDept, selectedTypeEnt, page == 1 ? page=1 : --page, 20))}
+						onclick={() =>
+							(entreprises = api.callApi(naf, selectedDept, selectedTypeEnt, page == 1 ? page=1 : --page, 20))}
 					>
 						{'<'}
 					</button>
 					<button
 						type="button"
-						onclick={async() =>
-							(entreprises = await api.callApi(naf, selectedDept, selectedTypeEnt, page == maxPage ? page = maxPage : ++page, 20))}
+						onclick={() =>
+							(entreprises = api.callApi(naf, selectedDept, selectedTypeEnt, page == maxPage ? page = maxPage : ++page, 20))}
 						>{'>'}</button
 					>
 						<p>Page : {page} / {entreprise.data.total_pages}</p>
@@ -108,7 +108,7 @@
 		}
 		.container {
 			display: grid;
-			grid-template-columns: 0.3fr 1fr;
+			grid-template-columns: 0.5fr 1fr;
 			column-gap: 2em;
 			margin-top: 2em;
 			.col {

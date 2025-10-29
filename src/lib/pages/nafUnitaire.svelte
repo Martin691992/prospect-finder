@@ -138,7 +138,7 @@
 		}
 		.container {
 			display: grid;
-			grid-template-columns: 0.5fr 1fr;
+			grid-template-columns: .5fr 1fr;
 			column-gap: 2em;
 			margin-top: 2em;
 			.col {
