@@ -45,7 +45,7 @@
             scrollbar-width: thin;
             overflow-y: scroll;
             opacity: 0;
-            z-index: -100;
+            z-index: -200;
             background-color: white;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
             div{

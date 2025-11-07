@@ -1,6 +1,6 @@
 export function callInseeAPI(){
 
-	async function callApi(code_naf, departements, typeEnt, page, nbParPages) {
+	async function callApi(code_naf, departements, typeEnt,nbSalaries, page, nbParPages) {
 		const response = await fetch('/api/get_naf_unitaire', {
 			method: 'POST',
 			headers: {
@@ -10,6 +10,7 @@ export function callInseeAPI(){
 				code_naf: code_naf ?? "",
 				departements: departements ?? "",
 				typeEnt: typeEnt ?? "",
+				nbSalaries : nbSalaries ?? "",
 				page: page ?? "",
 				nbParPages: nbParPages ?? ""
 			})
